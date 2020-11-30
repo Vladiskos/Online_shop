@@ -1,8 +1,12 @@
 package com.java.automation.lab.fall.cehanovich.core22.domain.classes;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.math.BigDecimal;
 import java.util.Comparator;
 
+@XmlRootElement(name = "BankCard")
+@XmlType(propOrder = {"number", "validity", "cvc", "balance"})
 public class BankCard extends PaymentMethod{
     private String number;
     private String validity;

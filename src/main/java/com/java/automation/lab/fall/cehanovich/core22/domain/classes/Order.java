@@ -1,9 +1,13 @@
 package com.java.automation.lab.fall.cehanovich.core22.domain.classes;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Comparator;
 
+@XmlRootElement(name = "Order")
+@XmlType(propOrder = {"id", "basket", "description", "tax", "totalPrice"})
 public class Order implements Comparable<Order>{
     private int id;
     private Basket basket;

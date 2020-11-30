@@ -2,11 +2,15 @@ package com.java.automation.lab.fall.cehanovich.core22.domain.classes;
 
 import com.java.automation.lab.fall.cehanovich.core22.domain.enums.Currency;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Comparator;
 import java.util.Map;
 
+@XmlRootElement(name = "PriceBook")
+@XmlType(propOrder = {"currency", "enabled", "validFrom", "validTo", "priceAndProduct"})
 public class PriceBook implements Comparable<PriceBook> {
     private Currency currency;
     private boolean enabled;

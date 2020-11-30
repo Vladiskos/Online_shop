@@ -1,7 +1,11 @@
 package com.java.automation.lab.fall.cehanovich.core22.domain.classes;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Comparator;
 
+@XmlRootElement(name = "RGB")
+@XmlType(propOrder = {"red", "green", "blue"})
 public class RGB implements Comparable<RGB>{
     private int red;
     private int green;

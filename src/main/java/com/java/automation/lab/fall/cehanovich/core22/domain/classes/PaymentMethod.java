@@ -1,7 +1,11 @@
 package com.java.automation.lab.fall.cehanovich.core22.domain.classes;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.math.BigDecimal;
 
+@XmlRootElement(name = "PaymentMethod")
+@XmlType(propOrder = {"balance"})
 public abstract class PaymentMethod implements Comparable<PaymentMethod>{
     protected BigDecimal balance;
 

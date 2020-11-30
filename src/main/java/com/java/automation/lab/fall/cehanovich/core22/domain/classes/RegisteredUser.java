@@ -1,8 +1,13 @@
 package com.java.automation.lab.fall.cehanovich.core22.domain.classes;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.time.LocalDate;
 import java.util.Set;
 
+@XmlRootElement(name = "RegisteredUser")
+@XmlType(propOrder = {"id", "firstname", "lastname", "contactNumber", "email", "savedCards","address",
+        "discountPercent", "birthday",})
 public class RegisteredUser extends User {
     private Set<BankCard> savedCards;
     private Address address;

@@ -1,7 +1,11 @@
 package com.java.automation.lab.fall.cehanovich.core22.domain.classes;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Comparator;
 
+@XmlRootElement(name = "Product")
+@XmlType(propOrder = {"code", "name", "brand", "description"})
 public class Product implements Comparable<Product> {
     private int code;
     private String name;

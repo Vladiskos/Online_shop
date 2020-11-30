@@ -1,8 +1,12 @@
 package com.java.automation.lab.fall.cehanovich.core22.domain.classes;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Comparator;
 import java.util.Set;
 
+@XmlRootElement(name = "Subcategory")
+@XmlType(propOrder = {"id", "discountPercent", "name", "products"})
 public class Subcategory implements Comparable<Subcategory> {
     private int id;
     private int discountPercent;

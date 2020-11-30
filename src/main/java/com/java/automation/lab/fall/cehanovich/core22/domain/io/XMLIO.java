@@ -23,6 +23,7 @@ public class XMLIO<T> {
         return (T) context.createUnmarshaller().unmarshal(new File(pathTo).getAbsoluteFile());
     }
 
+    @SuppressWarnings(value = "unchecked")
     public void write(T obj, String pathTo) throws JAXBException {
         System.out.println(obj.getClass());
         JAXBContext context = JAXBContext.newInstance(obj.getClass());

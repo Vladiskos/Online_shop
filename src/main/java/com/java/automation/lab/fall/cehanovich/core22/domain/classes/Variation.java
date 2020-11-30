@@ -3,8 +3,12 @@ package com.java.automation.lab.fall.cehanovich.core22.domain.classes;
 import com.java.automation.lab.fall.cehanovich.core22.domain.enums.Color;
 import com.java.automation.lab.fall.cehanovich.core22.domain.enums.Size;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Comparator;
 
+@XmlRootElement(name = "Variation")
+@XmlType(propOrder = {"id", "size", "color", "product", "discountPercent"})
 public class Variation implements Comparable<Variation>{
     private int id;
     private Size size;

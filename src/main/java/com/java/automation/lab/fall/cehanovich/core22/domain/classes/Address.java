@@ -2,8 +2,12 @@ package com.java.automation.lab.fall.cehanovich.core22.domain.classes;
 
 import com.java.automation.lab.fall.cehanovich.core22.domain.enums.City;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Comparator;
 
+@XmlRootElement(name = "Address")
+@XmlType(propOrder = {"city", "street", "house", "apartment"})
 public class Address implements Comparable<Address> {
     private City city;
     private String street;
@@ -15,6 +19,10 @@ public class Address implements Comparable<Address> {
         this.street = street;
         this.house = house;
         this.apartment = apartment;
+    }
+
+    public Address() {
+
     }
 
     public City getCity() {

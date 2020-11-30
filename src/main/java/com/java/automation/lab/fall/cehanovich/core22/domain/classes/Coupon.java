@@ -1,7 +1,11 @@
 package com.java.automation.lab.fall.cehanovich.core22.domain.classes;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Comparator;
 
+@XmlRootElement(name = "Coupon")
+@XmlType(propOrder = {"id", "enabled", "discountPercent"})
 public class Coupon implements Comparable<Coupon> {
     private int id;
     private boolean enabled;

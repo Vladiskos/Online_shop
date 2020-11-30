@@ -3,12 +3,17 @@ package com.java.automation.lab.fall.cehanovich.core22.domain.classes;
 import com.java.automation.lab.fall.cehanovich.core22.domain.classes.info.BillingInfo;
 import com.java.automation.lab.fall.cehanovich.core22.domain.classes.info.ShippingInfo;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.OffsetDateTime;
 import java.util.Comparator;
 import java.util.List;
 
+@XmlRootElement(name = "Basket")
+@XmlType(propOrder = {"id", "variations", "varCounter", "totalPrice", "paymentMethod", "priceBook",
+        "coupon", "user", "billingInfo", "shippingInfo"})
 public class Basket implements Comparable<Basket>{
     private int id;
     private List<Variation> variations;

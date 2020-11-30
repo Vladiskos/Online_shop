@@ -3,8 +3,12 @@ package com.java.automation.lab.fall.cehanovich.core22.domain.classes;
 import com.java.automation.lab.fall.cehanovich.core22.domain.dao.OrderDAO;
 import com.java.automation.lab.fall.cehanovich.core22.domain.dao.impl.mock.OrderDAOImpl;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.math.BigDecimal;
 
+@XmlRootElement(name = "User")
+@XmlType(propOrder = {"id", "firstname", "lastname", "contactNumber", "email"})
 public class User implements Comparable<User>{
     protected int id;
     protected String firstname;

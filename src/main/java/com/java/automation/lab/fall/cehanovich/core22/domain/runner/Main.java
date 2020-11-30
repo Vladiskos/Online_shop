@@ -5,6 +5,7 @@ import com.java.automation.lab.fall.cehanovich.core22.domain.enums.City;
 import com.java.automation.lab.fall.cehanovich.core22.domain.enums.Color;
 import com.java.automation.lab.fall.cehanovich.core22.domain.enums.Currency;
 import com.java.automation.lab.fall.cehanovich.core22.domain.enums.Size;
+import com.java.automation.lab.fall.cehanovich.core22.domain.service.AddressService;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,6 +19,7 @@ import java.util.concurrent.*;
 public class Main {
 
     public static void main(String[] args) {
+        /*
         Set<BankCard> cards = new HashSet<>();
         cards.add(new BankCard());
         cards.add(new BankCard());
@@ -66,6 +68,12 @@ public class Main {
         Executor executor = Executors.newFixedThreadPool(5);
         executor.execute(thr1);
         executor.execute(thr2);
+
+
+         */
+        AddressService.createAddress(City.GRODNO,"Pushkina",5,9);
+        //Address a = AddressService.getAddressById(4L);
+        System.out.println("***");
 
     }
 }
