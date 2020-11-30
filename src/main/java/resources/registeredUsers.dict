@@ -1,0 +1,22 @@
+[RegisteredUser {
+ID: 1Firstname: VladislavLastname: CehanovichcontactNumber: +80295252525Email: pochta@mail.ruSaved cards: [BankCard {
+Number: 8640 4207 8914 8642 Validity: 03/12 CVC: 667
+}, BankCard {
+Number: 8080 5050 5454 0666 Validity: 05/13 CVC: 163
+}]Address: 
+Address { City: MINSK; Street: Panchenko; House: 13; Apartment: 5 }Discount: 5% Birthday: 2000-12-03
+}, RegisteredUser {
+ID: 2Firstname: VladislavLastname: GerasimovichcontactNumber: +80257927464Email: g3r1k@gmail.comSaved cards: [BankCard {
+Number: 8640 4207 8914 8642 Validity: 03/12 CVC: 667
+}, BankCard {
+Number: 8080 5050 5454 0666 Validity: 05/13 CVC: 163
+}]Address: 
+Address { City: MINSK; Street: Fedorova; House: 24; Apartment: 132 }Discount: 0% Birthday: 2000-11-25
+}, RegisteredUser {
+ID: 3Firstname: IvanLastname: PavlovcontactNumber: +80445678904Email: pochta@gmail.comSaved cards: [BankCard {
+Number: 8640 4207 8914 8642 Validity: 03/12 CVC: 667
+}, BankCard {
+Number: 8080 5050 5454 0666 Validity: 05/13 CVC: 163
+}]Address: 
+Address { City: MINSK; Street: Fedorova; House: 26; Apartment: 66 }Discount: 3% Birthday: 2000-12-03
+}]

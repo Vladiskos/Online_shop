@@ -1,0 +1,7 @@
+[
+Address { City: MINSK; Street: Panchenko; House: 13; Apartment: 5 }, 
+Address { City: MINSK; Street: Panchenko; House: 24; Apartment: 50 }, 
+Address { City: BREST; Street: Pushkinskaya; House: 68; Apartment: 223 }, 
+Address { City: BREST; Street: Pushkinskaya; House: 59; Apartment: 45 }, 
+Address { City: GOMEL; Street: Ivanova; House: 1; Apartment: 76 }, 
+Address { City: GRODNO; Street: Sportivnaya; House: 27; Apartment: 13 }]
