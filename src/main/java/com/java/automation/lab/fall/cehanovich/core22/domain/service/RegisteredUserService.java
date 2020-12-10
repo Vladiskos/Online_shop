@@ -14,10 +14,12 @@ public class RegisteredUserService extends BaseService{
 
 
     public static RegisteredUser createRegisteredUser(int id, String firstname, String lastname, String contactNumber,
-                                                      String email, Set<BankCard> savedCards, Address address,
-                                                      int discountPercent, LocalDate birthday) {
+                                                      String email, Set<BankCard> savedCards, int discountPercent,
+                                                      LocalDate birthday, String salt, int passwordHash,
+                                                      LocalDate created, LocalDate modified, int roleId) {
         return DAO.create(new RegisteredUser(
-                id, firstname, lastname, contactNumber, email, savedCards, address, discountPercent, birthday));
+                id, firstname, lastname, contactNumber, email, savedCards, discountPercent, birthday, salt,
+                passwordHash, created, modified, roleId));
     }
 
     public static RegisteredUser getRegisteredUserById(Long id) {

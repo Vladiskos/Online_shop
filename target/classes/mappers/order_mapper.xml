@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="order_mapper">
+    <select id="getById" resultMap="order_map">
+        SELECT
+        *
+        FROM orders b
+        WHERE
+        b.coup_id = #{id}
+    </select>
+    <select id="get" resultMap="order_map">
+        SELECT
+        *
+        FROM orders b
+    </select>
+    <delete id="deleteById">
+        DELETE FROM orders WHERE c.coup_id = #{id}
+    </delete>
+    <insert id="create">
+        INSERT INTO orders(ord_description, ord_tax, ord_totalPrice, ord_date_created, ord_date_modified, ord_basket_id)
+        VALUES(#{description}, #{tax}, #{totalPrice}, #{created}, #{modified}, ${basket.getId()})
+    </insert>
+    <update id="update">
+        UPDATE orders SET
+        coup_enabled = #{enabled},
+        coup_discountPercent = #{discountPercent},
+        coup_date_created = #{created},
+        coup_date_modified = #{modified}
+    </update>
+    <resultMap id="order_map" type="com.java.automation.lab.fall.cehanovich.core22.domain.classes.Order" autoMapping="false">
+        <id property="id" column="coup_id"/>
+        <result property="enabled" column="coup_enabled"/>
+        <result property="discountPercent" column="coup_discountPercent"/>
+        <result property="created" column="coup_date_created"/>
+        <result property="modified " column="coup_date_modified"/>
+    </resultMap>
+</mapper>

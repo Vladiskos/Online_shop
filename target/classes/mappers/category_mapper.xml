@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="category_mapper">
+    <select id="getById" resultMap="category_map">
+        SELECT
+        *
+        FROM subcategories s
+        WHERE
+        s.scat_id = #{id}
+    </select>
+    <select id="get" resultMap="category_map">
+        SELECT
+        *
+        FROM subcategories s
+    </select>
+    <delete id="deleteById">
+        DELETE FROM subcategories WHERE scat_id=#{id}
+    </delete>
+    <insert id="create">
+        INSERT INTO categories(cat_name)
+        VALUES(#{name})
+    </insert>
+    <update id="update">
+        UPDATE subcategories SET
+        addr_city = #{city},
+        addr_street = #{street},
+        addr_house = #{house},
+        addr_apartment = #{apartment}
+        WHERE scat_id=#{id}
+    </update>
+
+    <resultMap id="category_map" type="com.java.automation.lab.fall.cehanovich.core22.domain.classes.Category" autoMapping="false">
+        <id property="id" column="prod_id"/>
+        <result property="name" column="prod_name"/>
+        <result property="brand" column="prod_brand"/>
+        <result property="description" column="prod_description"/>
+        <result property="created" column="prod_date_created"/>
+        <result property="modified" column="prod_date_modified"/>
+    </resultMap>
+</mapper>

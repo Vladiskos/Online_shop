@@ -6,15 +6,16 @@ import com.java.automation.lab.fall.cehanovich.core22.domain.dao.BasketDAO;
 import com.java.automation.lab.fall.cehanovich.core22.domain.dao.impl.mock.BasketDAOImpl;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 public class BasketService extends BaseService{
     private static final BasketDAO DAO = BASKET_DAO_MAP.get(PROPS.getValue(PropertyConstant.ENV_KEY));
 
 
-    public static Basket createBasket(int id, List<Variation> variations, BigDecimal totalPrice, PaymentMethod paymentMethod,
-                                      PriceBook priceBook, Coupon coupon) {
-        return DAO.create(new Basket(id, variations, totalPrice, paymentMethod, priceBook, coupon));
+    public static Basket createBasket(int id, List<Variation> variations, BigDecimal totalPrice, BankCard bankCard,
+                                      PriceBook priceBook, Coupon coupon, User user, LocalDate created, LocalDate modified) {
+        return DAO.create(new Basket(id, variations, totalPrice, bankCard, priceBook, coupon, user, created, modified));
     }
 
     public static Basket getBasketById(Long id) {

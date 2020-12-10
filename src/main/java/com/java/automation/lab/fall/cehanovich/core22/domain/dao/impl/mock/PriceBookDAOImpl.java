@@ -27,8 +27,9 @@ public class PriceBookDAOImpl implements PriceBookDAO {
 
     @Override
     public synchronized PriceBook update(PriceBook newPriceBook) {
-        return new PriceBook(newPriceBook.getCurrency(), newPriceBook.isEnabled(), newPriceBook.getValidFrom(),
-                newPriceBook.getValidTo(), newPriceBook.getPriceAndProduct());
+        return new PriceBook(newPriceBook.getId(), newPriceBook.getCurrency(), newPriceBook.isEnabled(),
+                newPriceBook.getValidFrom(), newPriceBook.getValidTo(), newPriceBook.getPriceAndProduct(),
+                newPriceBook.getCreated(), newPriceBook.getModified());
     }
 
     @Override

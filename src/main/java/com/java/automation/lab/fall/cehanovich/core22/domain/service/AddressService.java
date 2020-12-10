@@ -12,8 +12,8 @@ public class AddressService extends BaseService{
     private static final AddressDAO DAO = ADDRESS_DAO_MAP.get(PROPS.getValue(PropertyConstant.ENV_KEY));
 
 
-    public static Address createAddress(City city, String street, int house, int apartment) {
-        return DAO.create(new Address(city, street, house, apartment));
+    public static Address createAddress(long id, City city, String street, int house, int apartment) {
+        return DAO.create(new Address(id, city, street, house, apartment));
     }
 
     public static Address getAddressById(Long id) {

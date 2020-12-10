@@ -5,13 +5,15 @@ import com.java.automation.lab.fall.cehanovich.core22.domain.constant.PropertyCo
 import com.java.automation.lab.fall.cehanovich.core22.domain.dao.CouponDAO;
 import com.java.automation.lab.fall.cehanovich.core22.domain.dao.impl.mock.CouponDAOImpl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class CouponService extends BaseService{
     private static final CouponDAO DAO = COUPON_DAO_MAP.get(PROPS.getValue(PropertyConstant.ENV_KEY));
 
-    public static Coupon createCouponInfo(int id, boolean enabled, int discountPercent) {
-        return DAO.create(new Coupon(id, enabled, discountPercent));
+    public static Coupon createCoupon(int id, boolean enabled, int discountPercent, LocalDate created,
+                                      LocalDate modified) {
+        return DAO.create(new Coupon(id, enabled, discountPercent, created, modified));
     }
 
     public static Coupon getCouponById(Long id) {

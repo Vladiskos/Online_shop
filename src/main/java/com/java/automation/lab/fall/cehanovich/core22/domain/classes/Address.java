@@ -8,13 +8,14 @@ import java.util.Comparator;
 
 @XmlRootElement(name = "Address")
 @XmlType(propOrder = {"city", "street", "house", "apartment"})
-public class Address implements Comparable<Address> {
+public class Address extends AbstractEntity implements Comparable<Address> {
     private City city;
     private String street;
     private int house;
     private int apartment;
 
-    public Address(City city, String street, int house, int apartment) {
+    public Address(long id, City city, String street, int house, int apartment) {
+        this.setId(id);
         this.city = city;
         this.street = street;
         this.house = house;

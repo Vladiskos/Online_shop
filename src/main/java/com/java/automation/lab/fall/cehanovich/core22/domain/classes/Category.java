@@ -8,25 +8,15 @@ import java.util.Set;
 
 @XmlRootElement(name = "Category")
 @XmlType(propOrder = {"id", "subcategories", "name"})
-public class Category implements Comparable<Category> {
-    private int id;
+public class Category extends AbstractEntity implements Comparable<Category> {
     private Set<Subcategory> subcategories;
     private String name;
 
-    public Category(int id, Set<Subcategory> subcategories, String name) {
-        this.id = id;
+    public Category(long id, Set<Subcategory> subcategories, String name) {
+        this.setId(id);
         this.subcategories = subcategories;
         this.name = name;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public Set<Subcategory> getSubcategories() {
         return subcategories;
     }
@@ -46,7 +36,7 @@ public class Category implements Comparable<Category> {
 
     @Override
     public String toString() {
-        return "Category {\nID: " + id + "Subcategories" + subcategories.toString() + "Name: " + name + "\n}";
+        return "Category {\nID: " + this.getId() + "Subcategories" + subcategories.toString() + "Name: " + name + "\n}";
     }
 
     @Override
@@ -61,17 +51,17 @@ public class Category implements Comparable<Category> {
             return true;
         }
         Category other = (Category) that;
-        return id == other.id && subcategories.equals(other.subcategories) && name.equals(other.name);
+        return this.getId() == other.getId() && subcategories.equals(other.subcategories) && name.equals(other.name);
     }
 
     @Override
     public int hashCode() {
-        return subcategories.hashCode() + id + name.hashCode();
+        return (int) (subcategories.hashCode() + this.getId() + name.hashCode());
     }
 
     @Override
     public int compareTo(Category a) {
-        return this.getId() - a.getId();
+        return (int) (this.getId() - a.getId());
     }
 
     public static Comparator<Category> SubcategoriesComparator = new Comparator<Category>() {

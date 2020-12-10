@@ -5,33 +5,26 @@ import com.java.automation.lab.fall.cehanovich.core22.domain.enums.Size;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import java.time.LocalDate;
 import java.util.Comparator;
 
 @XmlRootElement(name = "Variation")
 @XmlType(propOrder = {"id", "size", "color", "product", "discountPercent"})
-public class Variation implements Comparable<Variation>{
-    private int id;
+public class Variation extends AbstractEntity implements Comparable<Variation>{
     private Size size;
     private Color color;
-    private Product product;
     private int discountPercent;
+    private LocalDate created;
+    private LocalDate modified;
 
-    public Variation(int id, Size size, Color color, Product product, int discountPercent) {
-        this.id = id;
+    public Variation(long id, Size size, Color color, int discountPercent, LocalDate created, LocalDate modified) {
+        this.setId(id);
         this.size = size;
         this.color = color;
-        this.product = product;
         this.discountPercent = discountPercent;
+        this.created = created;
+        this.modified = modified;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public Size getSize() {
         return size;
     }
@@ -48,14 +41,6 @@ public class Variation implements Comparable<Variation>{
         this.color = color;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     public int getDiscountPercent() {
         return discountPercent;
     }
@@ -64,10 +49,25 @@ public class Variation implements Comparable<Variation>{
         this.discountPercent = discountPercent;
     }
 
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDate created) {
+        this.created = created;
+    }
+
+    public LocalDate getModified() {
+        return modified;
+    }
+
+    public void setModified(LocalDate modified) {
+        this.modified = modified;
+    }
 
     @Override
     public String toString() {
-        return "Variation {\nID: " + id + "Size: " + size + "Color: " + color + "Products: " + product.toString()
+        return "Variation {\nID: " + this.getId() + "Size: " + size + "Color: " + color
                 + "Discount: " + discountPercent + "\n}";
     }
 
@@ -83,18 +83,18 @@ public class Variation implements Comparable<Variation>{
             return true;
         }
         Variation other = (Variation) that;
-        return id == other.id && size.equals(other.size) && color.equals(other.color) &&
-                product.equals(other.product) && discountPercent == other.discountPercent;
+        return this.getId() == other.getId() && size.equals(other.size) && color.equals(other.color) &&
+                discountPercent == other.discountPercent;
     }
 
     @Override
     public int hashCode() {
-        return id + size.hashCode() + color.hashCode() + product.hashCode() - discountPercent;
+        return (int) (this.getId() + size.hashCode() + color.hashCode()  - discountPercent);
     }
 
     @Override
     public int compareTo(Variation a) {
-        return this.getId() - a.getId();
+        return (int) (this.getId() - a.getId());
     }
 
     public static Comparator<Variation> SizeComparator = new Comparator<Variation>() {

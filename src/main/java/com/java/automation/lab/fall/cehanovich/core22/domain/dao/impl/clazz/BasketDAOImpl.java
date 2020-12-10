@@ -32,7 +32,8 @@ public class BasketDAOImpl implements BasketDAO{
     @Override
     public synchronized Basket update(Basket newBasket) {
         return new Basket(newBasket.getId(), newBasket.getVariations(), newBasket.getTotalPrice(),
-                newBasket.getPaymentMethod(), newBasket.getPriceBook(),newBasket.getCoupon());
+                newBasket.getBankCard(), newBasket.getPriceBook(),newBasket.getCoupon(), newBasket.getUser(),
+                newBasket.getCreated(), newBasket.getModified());
     }
 
     @Override

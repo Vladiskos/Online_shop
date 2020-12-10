@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="price_book_mapper">
+    <select id="getById" resultMap="price_book_map">
+        SELECT
+        *
+        FROM price_books p
+        LEFT JOIN price_books_and_price_and_products pbapap ON pbapap.price_books_id = p.pb_id
+        LEFT JOIN price_and_products pap ON pap.bask_id = pbapap.price_and_products_id
+        WHERE
+        p.pb_id = #{id}
+    </select>
+    <select id="get" resultMap="price_book_map">
+        SELECT
+        *
+        FROM coupons c
+    </select>
+    <delete id="deleteById">
+        DELETE FROM price_books WHERE c.coup_id = #{id}
+    </delete>
+    <insert id="create">
+        INSERT INTO price_books(pb_currency, pb_enabled, pb_validFrom, pb_validTo, pb_date_created, pb_date_modified)
+        VALUES(${currency.toString()}, #{enabled}, #{validFrom}, #{validTo}, #{created}, #{modified})
+    </insert>
+    <update id="update">
+        UPDATE price_books SET
+        pb_currency = ${currency.toString()},
+        pb_enabled = #{enabled},
+        pb_validFrom = #{validFrom},
+        pb_validTo = #{validTo},
+        pb_date_created = #{created},
+        pb_date_modified = #{modified}
+    </update>
+    <resultMap id="price_book_map" type="com.java.automation.lab.fall.cehanovich.core22.domain.classes.PriceBook" autoMapping="false">
+        <id property="id" column="coup_id"/>
+        <result property="currency" column="pb_currency"/>
+        <result property="enabled" column="pb_enabled"/>
+        <result property="validFrom" column="pb_validFrom"/>
+        <result property="validTo " column="pb_validTo"/>
+        <result property="created " column="pb_date_created"/>
+        <result property="modified " column="pb_date_modified"/>
+    </resultMap>
+</mapper>

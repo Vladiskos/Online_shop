@@ -7,25 +7,16 @@ import java.util.Set;
 
 @XmlRootElement(name = "Subcategory")
 @XmlType(propOrder = {"id", "discountPercent", "name", "products"})
-public class Subcategory implements Comparable<Subcategory> {
-    private int id;
+public class Subcategory extends AbstractEntity implements Comparable<Subcategory> {
     private int discountPercent;
     private String name;
     private Set<Product> products;
 
-    public Subcategory(int id, int discountPercent, String name, Set<Product> products) {
-        this.id = id;
+    public Subcategory(long id, int discountPercent, String name, Set<Product> products) {
+        this.setId(id);
         this.discountPercent = discountPercent;
         this.name = name;
         this.products = products;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getDiscountPercent() {
@@ -54,7 +45,7 @@ public class Subcategory implements Comparable<Subcategory> {
 
     @Override
     public String toString() {
-        return "Subcategory {\nID: " + id + "Discount: " + discountPercent + "Name: " + name + "Products: " +
+        return "Subcategory {\nID: " + this.getId() + "Discount: " + discountPercent + "Name: " + name + "Products: " +
                 products.toString() + "\n}";
     }
 
@@ -70,19 +61,19 @@ public class Subcategory implements Comparable<Subcategory> {
             return true;
         }
         Subcategory other = (Subcategory) that;
-        return id == other.id && discountPercent == other.discountPercent && name.equals(other.name) &&
+        return this.getId() == other.getId() && discountPercent == other.discountPercent && name.equals(other.name) &&
                 products.equals(other.products);
     }
 
     @Override
     public int hashCode() {
-        return id + name.hashCode() + products.hashCode();
+        return (int) (this.getId() + name.hashCode() + products.hashCode());
     }
 
 
     @Override
     public int compareTo(Subcategory a) {
-        return this.getId() - a.getId();
+        return (int) (this.getId() - a.getId());
     }
 
     public static Comparator<Subcategory> DiscountComparator = new Comparator<Subcategory>() {

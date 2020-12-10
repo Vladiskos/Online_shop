@@ -10,17 +10,27 @@ import java.util.Set;
         "discountPercent", "birthday",})
 public class RegisteredUser extends User {
     private Set<BankCard> savedCards;
-    private Address address;
     private int discountPercent;
     private LocalDate birthday;
+    private String salt;
+    private int passwordHash;
+    private LocalDate created;
+    private LocalDate modified;
+    private int roleId;
 
-    public RegisteredUser(int id, String firstname, String lastname, String contactNumber, String email,
-                          Set<BankCard> savedCards, Address address, int discountPercent, LocalDate birthday) {
+
+    public RegisteredUser(long id, String firstname, String lastname, String contactNumber, String email,
+                          Set<BankCard> savedCards, int discountPercent, LocalDate birthday,
+                          String salt, int passwordHash, LocalDate created, LocalDate modified, int roleId) {
         super(id, firstname, lastname, contactNumber, email);
         this.savedCards = savedCards;
-        this.address = address;
         this.discountPercent = discountPercent;
         this.birthday = birthday;
+        this.salt = salt;
+        this.passwordHash = passwordHash;
+        this.created = created;
+        this.modified = modified;
+        this.roleId = roleId;
     }
 
     public Set<BankCard> getSavedCards() {
@@ -31,22 +41,6 @@ public class RegisteredUser extends User {
         this.savedCards = savedCards;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public int getDiscount() {
-        return discountPercent;
-    }
-
-    public void setDiscount(int discount) {
-        this.discountPercent = discount;
-    }
-
     public LocalDate getBirthday() {
         return birthday;
     }
@@ -55,12 +49,59 @@ public class RegisteredUser extends User {
         this.birthday = birthday;
     }
 
+    public int getDiscountPercent() {
+        return discountPercent;
+    }
+
+    public void setDiscountPercent(int discountPercent) {
+        this.discountPercent = discountPercent;
+    }
+
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDate created) {
+        this.created = created;
+    }
+
+    public LocalDate getModified() {
+        return modified;
+    }
+
+    public void setModified(LocalDate modified) {
+        this.modified = modified;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public int getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(int passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
 
     @Override
     public String toString() {
-        return "RegisteredUser {\nID: " + id + "Firstname: " + firstname + "Lastname: " + lastname + "contactNumber: " +
-                contactNumber + "Email: " + email + "Saved cards: " + savedCards.toString() + "Address: " +
-                address + "Discount: " + discountPercent + "% Birthday: " + birthday + "\n}";
+        return "RegisteredUser {\nID: " + this.getId() + "Firstname: " + firstname + "Lastname: " + lastname + "contactNumber: " +
+                contactNumber + "Email: " + email + "Saved cards: " + savedCards.toString() + "Discount: " +
+                discountPercent + "% Birthday: " + birthday + "\n}";
     }
 
     @Override
@@ -75,14 +116,14 @@ public class RegisteredUser extends User {
             return true;
         }
         RegisteredUser other = (RegisteredUser) that;
-        return id == other.id && firstname.equals(other.firstname) && lastname.equals(other.lastname) &&
+        return this.getId() == other.getId() && firstname.equals(other.firstname) && lastname.equals(other.lastname) &&
                 contactNumber.equals(other.contactNumber) && email.equals(other.email) &&
-                savedCards.equals(other.savedCards) && address.equals(other.address) &&
-                discountPercent == other.discountPercent && birthday.equals(other.birthday);
+                savedCards.equals(other.savedCards) && discountPercent == other.discountPercent
+                && birthday.equals(other.birthday);
     }
 
     @Override
     public int hashCode() {
-        return id + firstname.hashCode() + lastname.hashCode() + contactNumber.hashCode() + address.hashCode();
+        return (int) (this.getId() + firstname.hashCode() + lastname.hashCode() + contactNumber.hashCode());
     }
 }

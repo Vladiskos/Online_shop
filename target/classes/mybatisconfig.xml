@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="config.properties">
+        <property name="username" value="username" />
+        <property name="password" value="password" />
+        <property name="url" value="url" />
+        <property name="driver" value="driver" />
+    </properties>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mappers/coupon_mapper.xml"/>
+        <mapper resource="mappers/address_mapper.xml"/>
+        <mapper resource="mappers/billing_info_mapper.xml"/>
+        <mapper resource="mappers/product_mapper.xml"/>
+        <mapper resource="mappers/variation_mapper.xml"/>
+        <mapper resource="mappers/subcategory_mapper.xml"/>
+        <mapper resource="mappers/category_mapper.xml"/>
+        <mapper resource="mappers/registered_user_mapper.xml"/>
+        <mapper resource="mappers/price_book_mapper.xml"/>
+        <mapper resource="mappers/bank_card_mapper.xml"/>
+        <mapper resource="mappers/basket_mapper.xml"/>
+        <mapper resource="mappers/order_mapper.xml"/>
+
+    </mappers>
+</configuration>

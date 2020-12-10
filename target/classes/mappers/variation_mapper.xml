@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="variation_mapper">
+    <select id="getById" resultMap="variation_map">
+        SELECT
+        *
+        FROM variations v
+        WHERE
+        v.var_id = #{id}
+    </select>
+    <select id="get" resultMap="variation_map">
+        SELECT
+        *
+        FROM variations v
+    </select>
+    <delete id="deleteById">
+        DELETE FROM variations WHERE var_id=#{id}
+    </delete>
+    <insert id="create">
+        INSERT INTO variations(var_size, var_color, var_discountPercent, var_date_created, var_date_modified)
+        VALUES(${size.toString()}, ${color.toString()}, ${discountPercent}, #{created}, #{modified})
+    </insert>
+    <update id="update">
+        UPDATE variations SET
+        addr_city = #{city},
+        addr_street = #{street},
+        addr_house = #{house},
+        addr_apartment = #{apartment}
+        WHERE addr_id=#{id}
+    </update>
+
+    <resultMap id="variation_map" type="com.java.automation.lab.fall.cehanovich.core22.domain.classes.Variation" autoMapping="false">
+        <id property="id" column="addr_id"/>
+        <result property="size" column="var_size"/>
+        <result property="color" column="var_color"/>
+        <result property="discountPercent" column="var_discountPercent"/>
+        <result property="created" column="var_date_created"/>
+        <result property="modified" column="var_date_modified"/>
+    </resultMap>
+</mapper>

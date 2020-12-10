@@ -1,19 +1,30 @@
 package com.java.automation.lab.fall.cehanovich.core22.domain.classes.info;
 
+import com.java.automation.lab.fall.cehanovich.core22.domain.classes.AbstractEntity;
+import com.java.automation.lab.fall.cehanovich.core22.domain.classes.Address;
 import com.java.automation.lab.fall.cehanovich.core22.domain.enums.PaymentType;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Comparator;
 
-public class BillingInfo implements Comparable<BillingInfo> {
+public class BillingInfo extends AbstractEntity implements Comparable<BillingInfo> {
     private BigDecimal totalPrice;
     private PaymentType paymentType;
     private String information;
+    private Address address;
+    private LocalDate created;
+    private LocalDate modified;
 
-    public BillingInfo(BigDecimal totalPrice, PaymentType paymentType, String information) {
+    public BillingInfo(long id, BigDecimal totalPrice, PaymentType paymentType, String information, Address address,
+                       LocalDate created, LocalDate modified) {
+        this.setId(id);
         this.totalPrice = totalPrice;
         this.paymentType = paymentType;
         this.information = information;
+        this.address = address;
+        this.created = created;
+        this.modified = modified;
     }
 
     public BigDecimal getTotalPrice() {
@@ -40,6 +51,37 @@ public class BillingInfo implements Comparable<BillingInfo> {
         this.information = information;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public PaymentType getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(PaymentType paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDate created) {
+        this.created = created;
+    }
+
+    public LocalDate getModified() {
+        return modified;
+    }
+
+    public void setModified(LocalDate modified) {
+        this.modified = modified;
+    }
 
     @Override
     public String toString() {

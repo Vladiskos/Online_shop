@@ -3,6 +3,7 @@ package com.java.automation.lab.fall.cehanovich.core22.domain.classes.info;
 import com.java.automation.lab.fall.cehanovich.core22.domain.classes.Address;
 import com.java.automation.lab.fall.cehanovich.core22.domain.classes.User;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Comparator;
 
@@ -10,11 +11,15 @@ public class ShippingInfo implements Comparable<ShippingInfo>{
     private OffsetDateTime date;
     private Address address;
     private User customerInfo;
+    private LocalDate created;
+    private LocalDate modified;
 
-    public ShippingInfo(OffsetDateTime date, Address address, User customerInfo) {
+    public ShippingInfo(OffsetDateTime date, Address address, User customerInfo, LocalDate created, LocalDate modified) {
         this.date = date;
         this.address = address;
         this.customerInfo = customerInfo;
+        this.created = created;
+        this.modified = modified;
     }
 
     public OffsetDateTime getDate() {
@@ -39,6 +44,22 @@ public class ShippingInfo implements Comparable<ShippingInfo>{
 
     public void setCustomerInfo(User customerInfo) {
         this.customerInfo = customerInfo;
+    }
+
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDate created) {
+        this.created = created;
+    }
+
+    public LocalDate getModified() {
+        return modified;
+    }
+
+    public void setModified(LocalDate modified) {
+        this.modified = modified;
     }
 
     @Override
