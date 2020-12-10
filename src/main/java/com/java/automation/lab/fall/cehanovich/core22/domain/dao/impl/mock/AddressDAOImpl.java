@@ -28,7 +28,7 @@ public class AddressDAOImpl implements AddressDAO {
 
     @Override
     public synchronized Address update(Address newAddress) {
-        return new Address(newAddress.getCity(), newAddress.getStreet(), newAddress.getHouse(),
+        return new Address(newAddress.getId(), newAddress.getCity(), newAddress.getStreet(), newAddress.getHouse(),
                 newAddress.getApartment());
     }
 

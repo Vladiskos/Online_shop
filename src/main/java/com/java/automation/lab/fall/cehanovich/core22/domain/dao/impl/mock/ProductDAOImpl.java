@@ -27,8 +27,8 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public synchronized Product update(Product newProduct) {
-        return new Product(newProduct.getCode(), newProduct.getName(), newProduct.getBrand(),
-                newProduct.getDescription());
+        return new Product(newProduct.getId(), newProduct.getName(), newProduct.getBrand(),
+                newProduct.getDescription(), newProduct.getVariation(), newProduct.getCreated(), newProduct.getModified());
     }
 
     @Override

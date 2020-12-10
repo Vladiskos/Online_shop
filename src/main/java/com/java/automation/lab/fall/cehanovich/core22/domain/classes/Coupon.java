@@ -2,31 +2,27 @@ package com.java.automation.lab.fall.cehanovich.core22.domain.classes;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import java.time.LocalDate;
 import java.util.Comparator;
 
 @XmlRootElement(name = "Coupon")
 @XmlType(propOrder = {"id", "enabled", "discountPercent"})
-public class Coupon implements Comparable<Coupon> {
-    private int id;
+public class Coupon extends AbstractEntity implements Comparable<Coupon> {
     private boolean enabled;
     private int discountPercent;
+    private LocalDate created;
+    private LocalDate modified;
 
     public Coupon() {
 
     }
 
-    public Coupon(int id, boolean enabled, int discountPercent) {
-        this.id = id;
+    public Coupon(long id, boolean enabled, int discountPercent, LocalDate created, LocalDate modified) {
+        this.setId(id);
         this.enabled = enabled;
         this.discountPercent = discountPercent;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.created = created;
+        this.modified = modified;
     }
 
     public boolean isEnabled() {
@@ -45,9 +41,25 @@ public class Coupon implements Comparable<Coupon> {
         this.discountPercent = discountPercent;
     }
 
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDate created) {
+        this.created = created;
+    }
+
+    public LocalDate getModified() {
+        return modified;
+    }
+
+    public void setModified(LocalDate modified) {
+        this.modified = modified;
+    }
+
     @Override
     public String toString() {
-        return "Coupon {\nID: " + id + "Is enabled" + enabled + "Discount: " + discountPercent + "%\n}";
+        return "Coupon {\nID: " + this.getId() + "Is enabled" + enabled + "Discount: " + discountPercent + "%\n}";
     }
 
     @Override
@@ -62,18 +74,18 @@ public class Coupon implements Comparable<Coupon> {
             return true;
         }
         Coupon other = (Coupon) that;
-        return id == other.id && enabled == other.enabled && discountPercent == other.discountPercent;
+        return this.getId() == other.getId()  && enabled == other.enabled && discountPercent == other.discountPercent;
     }
 
     @Override
     public int hashCode() {
-        return id * 13 + discountPercent + 3;
+        return (int) (this.getId() * 13 + discountPercent + 3);
     }
 
 
     @Override
     public int compareTo(Coupon a) {
-        return this.getId() - a.getId();
+        return (int) (this.getId() - a.getId());
     }
 
     public static Comparator<Coupon> DiscountPercentComparator = new Comparator<Coupon>() {

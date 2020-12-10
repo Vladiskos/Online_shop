@@ -29,8 +29,9 @@ public class RegisteredUserDAOImpl implements RegisteredUserDAO {
     public synchronized RegisteredUser update(RegisteredUser newRegisteredUser) {
         return new RegisteredUser(newRegisteredUser.getId(), newRegisteredUser.getFirstname(),
                 newRegisteredUser.getLastname(), newRegisteredUser.getContactNumber(), newRegisteredUser.getEmail(),
-                newRegisteredUser.getSavedCards(), newRegisteredUser.getAddress(), newRegisteredUser.getDiscount(),
-                newRegisteredUser.getBirthday());
+                newRegisteredUser.getSavedCards(), newRegisteredUser.getDiscountPercent(),
+                newRegisteredUser.getBirthday(), newRegisteredUser.getSalt(), newRegisteredUser.getPasswordHash(),
+                newRegisteredUser.getCreated(), newRegisteredUser.getModified(), newRegisteredUser.getRoleId());
     }
 
     @Override

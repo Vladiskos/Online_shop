@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="basket_mapper">
+    <select id="getById" resultMap="basket_map">
+        SELECT
+        *
+        FROM baskets b
+        WHERE
+        b.coup_id = #{id}
+    </select>
+    <select id="get" resultMap="basket_map">
+        SELECT
+        *
+        FROM baskets b
+    </select>
+    <delete id="deleteById">
+        DELETE FROM baskets WHERE c.coup_id = #{id}
+    </delete>
+    <insert id="create">
+        INSERT INTO baskets(bask_totalPrice, bask_date_created, bask_date_modified, bask_coupon_id, bask_user_id, bask_bank_cards_number, bask_price_books_id)
+        VALUES(#{totalPrice}, #{created}, #{modified}, ${coupon.getId()}, ${user.getId()}, ${"'"+bankCard.getNumber()+"'"}, ${priceBook.getId()})
+    </insert>
+    <update id="update">
+        UPDATE baskets SET
+        coup_enabled = #{enabled},
+        coup_discountPercent = #{discountPercent},
+        coup_date_created = #{created},
+        coup_date_modified = #{modified}
+    </update>
+    <resultMap id="basket_map" type="com.java.automation.lab.fall.cehanovich.core22.domain.classes.Basket" autoMapping="false">
+        <id property="id" column="coup_id"/>
+        <result property="enabled" column="coup_enabled"/>
+        <result property="discountPercent" column="coup_discountPercent"/>
+        <result property="created" column="coup_date_created"/>
+        <result property="modified " column="coup_date_modified"/>
+    </resultMap>
+</mapper>

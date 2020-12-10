@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Comparator;
 import java.util.List;
@@ -14,30 +15,32 @@ import java.util.List;
 @XmlRootElement(name = "Basket")
 @XmlType(propOrder = {"id", "variations", "varCounter", "totalPrice", "paymentMethod", "priceBook",
         "coupon", "user", "billingInfo", "shippingInfo"})
-public class Basket implements Comparable<Basket>{
-    private int id;
+public class Basket extends AbstractEntity implements Comparable<Basket>{
     private List<Variation> variations;
     private int varCounter = 0;
     private BigDecimal totalPrice;
-    private PaymentMethod paymentMethod;
+    private BankCard bankCard;
     private PriceBook priceBook;
     private Coupon coupon;
     private User user;
-    private BillingInfo billingInfo;
-    private ShippingInfo shippingInfo;
+    private LocalDate created;
+    private LocalDate modified;
 
     public Basket() {
 
     }
 
-    public Basket(int id, List<Variation> variations, BigDecimal totalPrice, PaymentMethod paymentMethod,
-                  PriceBook priceBook, Coupon coupon) {
-        this.id = id;
+    public Basket(long id, List<Variation> variations, BigDecimal totalPrice, BankCard bankCard,
+                  PriceBook priceBook, Coupon coupon, User user, LocalDate created, LocalDate modified) {
+        this.setId(id);
         this.variations = variations;
         this.totalPrice = totalPrice;
-        this.paymentMethod = paymentMethod;
+        this.bankCard = bankCard;
         this.priceBook = priceBook;
+        this.user = user;
         this.coupon = coupon;
+        this.created = created;
+        this.modified = modified;
 
     }
 
@@ -65,12 +68,12 @@ public class Basket implements Comparable<Basket>{
         this.totalPrice = totalPrice;
     }
 
-    public PaymentMethod getPaymentMethod() {
-        return paymentMethod;
+    public BankCard getBankCard() {
+        return bankCard;
     }
 
-    public void setPaymentMethod(PaymentMethod paymentMethod) {
-        this.paymentMethod = paymentMethod;
+    public void setBankCard(BankCard bankCard) {
+        this.bankCard = bankCard;
     }
 
     public Coupon getCoupon() {
@@ -97,28 +100,20 @@ public class Basket implements Comparable<Basket>{
         this.user = user;
     }
 
-    public BillingInfo getBillingInfo() {
-        return billingInfo;
+    public LocalDate getCreated() {
+        return created;
     }
 
-    public void setBillingInfo(BillingInfo billingInfo) {
-        this.billingInfo = billingInfo;
+    public void setCreated(LocalDate created) {
+        this.created = created;
     }
 
-    public ShippingInfo getShippingInfo() {
-        return shippingInfo;
+    public LocalDate getModified() {
+        return modified;
     }
 
-    public void setShippingInfo(ShippingInfo shippingInfo) {
-        this.shippingInfo = shippingInfo;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setModified(LocalDate modified) {
+        this.modified = modified;
     }
 
     public void addVariation(Variation variation) {
@@ -156,7 +151,7 @@ public class Basket implements Comparable<Basket>{
     @Override
     public String toString() {
         return "Basket {\nVariations: " + variations.toString() + "Total Price: " + totalPrice +
-                "PaymentMethod: " + paymentMethod + "Price book: " + priceBook.toString() + "Coupon: " +
+                "Bank card: " + bankCard.toString() + "Price book: " + priceBook.toString() + "Coupon: " +
                 coupon.toString() + "\n}";
     }
 
@@ -173,18 +168,18 @@ public class Basket implements Comparable<Basket>{
         }
         Basket other = (Basket) that;
         return variations.equals(other.variations) && totalPrice.equals(other.totalPrice) &&
-                paymentMethod.equals(other.paymentMethod) && coupon.equals(other.coupon);
+                bankCard.equals(other.bankCard) && coupon.equals(other.coupon);
     }
 
     @Override
     public int hashCode() {
-        return variations.hashCode() + totalPrice.hashCode() - paymentMethod.hashCode() + coupon.hashCode();
+        return variations.hashCode() + totalPrice.hashCode() - bankCard.hashCode() + coupon.hashCode();
     }
 
 
     @Override
     public int compareTo(Basket a) {
-        return this.getId() - a.getId();
+        return (int) (this.getId() - a.getId());
     }
 
     public static Comparator<Basket> VarCounterComparator = new Comparator<Basket>() {
@@ -205,7 +200,7 @@ public class Basket implements Comparable<Basket>{
     public static Comparator<Basket> PaymentMethodComparator = new Comparator<Basket>() {
         @Override
         public int compare(Basket a1, Basket a2) {
-            return (a1.getPaymentMethod().compareTo(a2.getPaymentMethod()));
+            return (a1.getBankCard().compareTo(a2.getBankCard()));
         }
     };
 

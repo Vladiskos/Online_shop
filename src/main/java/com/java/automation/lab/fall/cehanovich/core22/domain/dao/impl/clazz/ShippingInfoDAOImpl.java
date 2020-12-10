@@ -31,7 +31,7 @@ public class ShippingInfoDAOImpl implements ShippingInfoDAO {
     @Override
     public synchronized ShippingInfo update(ShippingInfo newShippingInfo) {
         return new ShippingInfo(newShippingInfo.getDate(), newShippingInfo.getAddress(),
-                newShippingInfo.getCustomerInfo());
+                newShippingInfo.getCustomerInfo(), newShippingInfo.getCreated(), newShippingInfo.getModified());
     }
 
     @Override

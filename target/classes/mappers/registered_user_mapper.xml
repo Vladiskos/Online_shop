@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="registered_user_mapper">
+    <select id="getById" resultMap="registered_user_map">
+        SELECT
+        *
+        FROM users u
+        WHERE
+        u.user_id = #{id}
+    </select>
+    <select id="get" resultMap="registered_user_map">
+        SELECT
+        *
+        FROM users u
+    </select>
+    <delete id="deleteById">
+        DELETE FROM users WHERE user_id=#{id}
+    </delete>
+    <insert id="create">
+        INSERT INTO users(user_firstname, user_lastname, user_contactNumber, user_email, user_discountPercent, user_birthday, user_salt, user_passwordHash, user_date_created, user_date_modified, user_role_id)
+        VALUES(#{firstname}, #{lastname}, #{contactNumber}, #{email}, #{discountPercent}, #{birthday}, #{salt},
+        #{passwordHash}, #{created}, #{modified}, #{roleId})
+    </insert>
+    <update id="update">
+        UPDATE users SET
+        addr_city = #{city},
+        addr_street = #{street},
+        addr_house = #{house},
+        addr_apartment = #{apartment}
+        WHERE user_id=#{id}
+    </update>
+
+    <resultMap id="registered_user_map" type="com.java.automation.lab.fall.cehanovich.core22.domain.classes.RegisteredUser" autoMapping="false">
+        <id property="id" column="prod_id"/>
+        <result property="name" column="prod_name"/>
+        <result property="brand" column="prod_brand"/>
+        <result property="description" column="prod_description"/>
+        <result property="created" column="prod_date_created"/>
+        <result property="modified" column="prod_date_modified"/>
+    </resultMap>
+</mapper>

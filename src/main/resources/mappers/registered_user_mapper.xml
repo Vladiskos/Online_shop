@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="registered_user_mapper">
+    <select id="getById" resultMap="registered_user_map">
+        SELECT
+        *
+        FROM users u
+        LEFT JOIN users_and_bank_cards uab ON uab.uab_users_id = u.user_id
+        LEFT JOIN bank_cards b ON b.bc_number = uab.uab_bank_cards_id
+        WHERE
+        u.user_id = #{id}
+    </select>
+    <select id="get" resultMap="registered_user_map">
+        SELECT
+        *
+        FROM users u
+        LEFT JOIN users_and_bank_cards uab ON uab.uab_users_id = u.user_id
+        LEFT JOIN bank_cards b ON b.bc_number = uab.uab_bank_cards_id
+    </select>
+    <delete id="deleteById">
+        DELETE FROM users WHERE user_id=#{id}
+    </delete>
+    <insert id="create">
+        INSERT INTO users(user_firstname, user_lastname, user_contactNumber, user_email, user_discountPercent, user_birthday, user_salt, user_passwordHash, user_date_created, user_date_modified, user_role_id)
+        VALUES(#{firstname}, #{lastname}, #{contactNumber}, #{email}, #{discountPercent}, #{birthday}, #{salt},
+        #{passwordHash}, #{created}, #{modified}, #{roleId})
+    </insert>
+    <update id="update">
+        UPDATE users SET
+        user_firstname = #{firstname},
+        user_lastname = #{lastname},
+        user_contactNumber = #{contactNumber},
+        user_email = #{email},
+        user_discountPercent = #{discountPercent},
+        user_birthday = #{birthday},
+        user_salt = #{salt},
+        user_passwordHash = #{passwordHash},
+        user_date_created = #{created},
+        user_date_modified = #{modified},
+        user_role_id = #{roleId}
+        WHERE user_id=#{id}
+    </update>
+
+    <resultMap id="registered_user_map" type="com.java.automation.lab.fall.cehanovich.core22.domain.classes.RegisteredUser" autoMapping="false">
+        <id property="id" column="prod_id"/>
+        <result property="firstname" column="user_firstname"/>
+        <result property="lastname" column="user_lastname"/>
+        <result property="contactNumber" column="user_contactNumber"/>
+        <result property="email" column="user_email"/>
+        <result property="discountPercent" column="user_discountPercent"/>
+        <result property="birthday" column="user_birthday"/>
+        <result property="salt" column="user_salt"/>
+        <result property="passwordHash" column="user_passwordHash"/>
+        <result property="created" column="user_date_created"/>
+        <result property="modified" column="user_date_modified"/>
+        <result property="roleId" column="user_role_id"/>
+    </resultMap>
+</mapper>

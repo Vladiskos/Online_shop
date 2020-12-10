@@ -2,29 +2,27 @@ package com.java.automation.lab.fall.cehanovich.core22.domain.classes;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import java.time.LocalDate;
 import java.util.Comparator;
 
 @XmlRootElement(name = "Product")
 @XmlType(propOrder = {"code", "name", "brand", "description"})
-public class Product implements Comparable<Product> {
-    private int code;
+public class Product extends AbstractEntity implements Comparable<Product> {
     private String name;
     private String brand;
     private String description;
+    private Variation variation;
+    private LocalDate created;
+    private LocalDate modified;
 
-    public Product(int code, String name, String brand, String description) {
-        this.code = code;
+    public Product(long id, String name, String brand, String description, Variation variation, LocalDate created, LocalDate modified) {
+        this.setId(id);
         this.name = name;
         this.brand = brand;
         this.description = description;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
+        this.variation = variation;
+        this.created = created;
+        this.modified = modified;
     }
 
     public String getName() {
@@ -51,10 +49,33 @@ public class Product implements Comparable<Product> {
         this.description = description;
     }
 
+    public Variation getVariation() {
+        return variation;
+    }
+
+    public void setVariation(Variation variation) {
+        this.variation = variation;
+    }
+
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDate created) {
+        this.created = created;
+    }
+
+    public LocalDate getModified() {
+        return modified;
+    }
+
+    public void setModified(LocalDate modified) {
+        this.modified = modified;
+    }
 
     @Override
     public String toString() {
-        return "Product {\nСode: " + code + "Name: " + name + "Brand: " + brand + "Description: " + description + "\n}";
+        return "Product {\nId: " + this.getId() + "Name: " + name + "Brand: " + brand + "Description: " + description + "\n}";
     }
 
     @Override
@@ -69,19 +90,19 @@ public class Product implements Comparable<Product> {
             return true;
         }
         Product other = (Product) that;
-        return code == other.code && name.equals(other.name) && brand.equals(other.brand) &&
+        return this.getId() == other.getId() && name.equals(other.name) && brand.equals(other.brand) &&
                 description.equals(other.description);
     }
 
     @Override
     public int hashCode() {
-        return code + name.hashCode() + brand.hashCode() - description.hashCode();
+        return (int) (this.getId() + name.hashCode() + brand.hashCode() - description.hashCode());
     }
 
 
     @Override
     public int compareTo(Product a) {
-        return this.getCode() - a.getCode();
+        return (int) (this.getId() - a.getId());
     }
 
     public static Comparator<Product> NameComparator = new Comparator<Product>() {

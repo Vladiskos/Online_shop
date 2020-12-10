@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bank_card_mapper">
+    <select id="getById" resultMap="bank_card_map">
+        SELECT
+        *
+        FROM bank_cards b
+        WHERE
+        b.bc_number = #{number}
+    </select>
+    <select id="get" resultMap="bank_card_map">
+        SELECT
+        *
+        FROM bank_cards b
+    </select>
+    <delete id="deleteById">
+        DELETE FROM bank_cards WHERE bc_number=#{number}
+    </delete>
+    <insert id="create">
+        INSERT INTO bank_cards(bc_number, bc_validity, bc_cvc, bc_balance)
+        VALUES(#{number}, #{validity}, #{cvc}, #{balance})
+    </insert>
+    <update id="update">
+        UPDATE bank_cards SET
+        bc_number = #{number},
+        bc_validity = #{validity},
+        bc_cvc = #{cvc},
+        bc_balance = #{balance}
+        WHERE bc_number=#{number}
+    </update>
+    <resultMap id="bank_card_map" type="com.java.automation.lab.fall.cehanovich.core22.domain.classes.BankCard" autoMapping="false">
+        <id property="number" column="bc_number"/>
+        <result property="validity" column="bc_validity"/>
+        <result property="cvc" column="bc_cvc"/>
+        <result property="balance" column="bc_balance"/>
+    </resultMap>
+</mapper>

@@ -12,7 +12,7 @@ import java.util.Set;
 public class CategoryService extends BaseService{
     private static final CategoryDAO DAO = CATEGORY_DAO_MAP.get(PROPS.getValue(PropertyConstant.ENV_KEY));
 
-    public static Category createCategoryInfo(int id, Set<Subcategory> subcategories, String name) {
+    public static Category createCategory(int id, Set<Subcategory> subcategories, String name) {
         return DAO.create(new Category(id, subcategories, name));
     }
 

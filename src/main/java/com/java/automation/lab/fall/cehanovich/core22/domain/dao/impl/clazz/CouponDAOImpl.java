@@ -30,7 +30,8 @@ public class CouponDAOImpl implements CouponDAO {
 
     @Override
     public synchronized Coupon update(Coupon newCoupon) {
-        return new Coupon(newCoupon.getId(), newCoupon.isEnabled(), newCoupon.getDiscountPercent());
+        return new Coupon(newCoupon.getId(), newCoupon.isEnabled(), newCoupon.getDiscountPercent(),
+                newCoupon.getCreated(), newCoupon.getModified());
     }
 
     @Override

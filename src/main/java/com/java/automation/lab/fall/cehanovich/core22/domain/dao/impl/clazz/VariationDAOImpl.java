@@ -31,7 +31,7 @@ public class VariationDAOImpl implements VariationDAO {
     @Override
     public synchronized Variation update(Variation newVariation) {
         Variation updated = new Variation(newVariation.getId(), newVariation.getSize(), newVariation.getColor(),
-                newVariation.getProduct(), newVariation.getDiscountPercent());
+                 newVariation.getDiscountPercent(), newVariation.getCreated(), newVariation.getModified());
         return updated;
     }
 

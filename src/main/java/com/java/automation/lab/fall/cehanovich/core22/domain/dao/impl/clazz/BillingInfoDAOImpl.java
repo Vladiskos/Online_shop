@@ -30,8 +30,9 @@ public class BillingInfoDAOImpl implements BillingInfoDAO {
 
     @Override
     public synchronized BillingInfo update(BillingInfo newBillingInfo) {
-        return new BillingInfo(newBillingInfo.getTotalPrice(), newBillingInfo.getPayment(),
-                newBillingInfo.getInformation());
+        return new BillingInfo(newBillingInfo.getId(),newBillingInfo.getTotalPrice(), newBillingInfo.getPayment(),
+                newBillingInfo.getInformation(), newBillingInfo.getAddress(), newBillingInfo.getCreated(),
+                newBillingInfo.getModified());
     }
 
     @Override

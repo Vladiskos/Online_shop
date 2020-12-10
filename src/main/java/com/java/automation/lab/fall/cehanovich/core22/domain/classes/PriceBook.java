@@ -5,26 +5,32 @@ import com.java.automation.lab.fall.cehanovich.core22.domain.enums.Currency;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Comparator;
 import java.util.Map;
 
 @XmlRootElement(name = "PriceBook")
 @XmlType(propOrder = {"currency", "enabled", "validFrom", "validTo", "priceAndProduct"})
-public class PriceBook implements Comparable<PriceBook> {
+public class PriceBook extends AbstractEntity implements Comparable<PriceBook> {
     private Currency currency;
     private boolean enabled;
-    private OffsetDateTime validFrom;
-    private OffsetDateTime validTo;
+    private LocalDate validFrom;
+    private LocalDate validTo;
     private Map<Variation, BigDecimal> priceAndProduct;
+    private LocalDate created;
+    private LocalDate modified;
 
-    public PriceBook(Currency currency, boolean enabled, OffsetDateTime validFrom, OffsetDateTime validTo,
-                     Map<Variation, BigDecimal> priceAndProduct) {
+    public PriceBook(long id, Currency currency, boolean enabled, LocalDate validFrom, LocalDate validTo,
+                     Map<Variation, BigDecimal> priceAndProduct, LocalDate created, LocalDate modified) {
+        this.setId(id);
         this.currency = currency;
         this.enabled = enabled;
         this.validFrom = validFrom;
         this.validTo = validTo;
         this.priceAndProduct = priceAndProduct;
+        this.created = created;
+        this.modified = modified;
     }
 
     public Currency getCurrency() {
@@ -43,19 +49,19 @@ public class PriceBook implements Comparable<PriceBook> {
         this.enabled = enabled;
     }
 
-    public OffsetDateTime getValidFrom() {
+    public LocalDate getValidFrom() {
         return validFrom;
     }
 
-    public void setValidFrom(OffsetDateTime validFrom) {
+    public void setValidFrom(LocalDate validFrom) {
         this.validFrom = validFrom;
     }
 
-    public OffsetDateTime getValidTo() {
+    public LocalDate getValidTo() {
         return validTo;
     }
 
-    public void setValidTo(OffsetDateTime validTo) {
+    public void setValidTo(LocalDate validTo) {
         this.validTo = validTo;
     }
 
@@ -65,6 +71,22 @@ public class PriceBook implements Comparable<PriceBook> {
 
     public void setPriceAndProduct(Map<Variation, BigDecimal> priceAndProduct) {
         this.priceAndProduct = priceAndProduct;
+    }
+
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDate created) {
+        this.created = created;
+    }
+
+    public LocalDate getModified() {
+        return modified;
+    }
+
+    public void setModified(LocalDate modified) {
+        this.modified = modified;
     }
 
     @Override

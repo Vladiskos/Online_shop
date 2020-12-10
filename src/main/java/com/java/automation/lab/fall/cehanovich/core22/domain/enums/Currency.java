@@ -1,16 +1,23 @@
 package com.java.automation.lab.fall.cehanovich.core22.domain.enums;
 
 public enum Currency {
-    USD("U.S. dollar"),
-    EUR("Euro"),
-    BYN("Belarusian ruble"),
-    RUB("Russian ruble"),
-    UAH("Hryvnia"),
-    PLN("Zloty");
+    USD("USD","U.S. dollar"),
+    EUR("EUR","Euro"),
+    BYN("BYN","Belarusian ruble"),
+    RUB("RUB","Russian ruble"),
+    UAH("UAH","Hryvnia"),
+    PLN("PLN","Zloty");
 
     private String description;
+    private String currency;
 
-    Currency(String description) {
+    Currency(String currency, String description) {
+        this.currency = currency;
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "'" + description + " " + currency + "'";
     }
 }

@@ -4,23 +4,27 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.util.Comparator;
 
 @XmlRootElement(name = "Order")
 @XmlType(propOrder = {"id", "basket", "description", "tax", "totalPrice"})
-public class Order implements Comparable<Order>{
-    private int id;
+public class Order extends AbstractEntity implements Comparable<Order>{
     private Basket basket;
     private String description;
     private BigDecimal tax;
     private BigDecimal totalPrice;
+    private LocalDate created;
+    private LocalDate modified;
 
-    public Order(int id, Basket basket, String description, BigDecimal tax) {
-        this.id = id;
+    public Order(long id, Basket basket, String description, BigDecimal tax, LocalDate created, LocalDate modified) {
+        this.setId(id);
         this.basket = basket;
         this.description = description;
         this.tax = tax;
         this.totalPrice = basket.getTotalPrice();
+        this.created = created;
+        this.modified = modified;
     }
 
     public Basket getBasket() {
@@ -51,16 +55,24 @@ public class Order implements Comparable<Order>{
         return totalPrice;
     }
 
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDate created) {
+        this.created = created;
+    }
+
+    public LocalDate getModified() {
+        return modified;
+    }
+
+    public void setModified(LocalDate modified) {
+        this.modified = modified;
+    }
+
     public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public BigDecimal countTotalPrice() {
@@ -98,7 +110,7 @@ public class Order implements Comparable<Order>{
 
     @Override
     public int compareTo(Order a) {
-        return this.getId() - a.getId();
+        return (int) (this.getId() - a.getId());
     }
 
     public static Comparator<Order> BasketComparator = new Comparator<Order>() {

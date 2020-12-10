@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shipping_info_mapper">
+    <select id="getById" resultMap="shipping_info_map">
+        SELECT
+        *
+        FROM shipping_info s
+        LEFT JOIN users u ON u.user_id = s.si_user_id
+        LEFT JOIN addresses a ON a.addr_id = s.si_address_id
+        WHERE
+        s.si_id = #{id}
+    </select>
+    <select id="get" resultMap="shipping_info_map">
+        SELECT
+        *
+        FROM shipping_info s
+        LEFT JOIN users u ON u.user_id = s.si_user_id
+        LEFT JOIN addresses a ON a.addr_id = s.si_address_id
+    </select>
+    <delete id="deleteById">
+        DELETE FROM shipping_info WHERE si_id=#{id}
+    </delete>
+    <insert id="create">
+        INSERT INTO shipping_info(si_date, si_date_created, si_date_modified, si_user_id, si_address_id)
+        VALUES(#{date}, #{created}, #{modified}, ${customerInfo.getId()}, ${address.getId()});
+    </insert>
+    <update id="update">
+        UPDATE shipping_info SET
+        si_date = #{date},
+        si_date_created = #{created},
+        si_date_modified = #{modified},
+        si_user_id = ${customerInfo.getId()},
+        si_address_id = ${address.getId()},
+        WHERE si_id=#{id}
+    </update>
+
+    <resultMap id="shipping_info_map" type="com.java.automation.lab.fall.cehanovich.core22.domain.classes.info.ShippingInfo" autoMapping="false">
+        <id property="id" column="si_id"/>
+        <result property="date" column="si_date"/>
+        <result property="created" column="si_date_created"/>
+        <result property="modified" column="si_date_modified"/>
+        <association property="user" resultMap="user_mapper.user_map" />
+        <association property="address" resultMap="address_mapper.address_map" />
+    </resultMap>
+
+</mapper>

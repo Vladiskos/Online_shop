@@ -27,7 +27,8 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public synchronized Order update(Order newOrder) {
-        Order updated = new Order(newOrder.getId(), newOrder.getBasket(), newOrder.getDescription(), newOrder.getTax());
+        Order updated = new Order(newOrder.getId(), newOrder.getBasket(), newOrder.getDescription(), newOrder.getTax(),
+                newOrder.getCreated(), newOrder.getModified());
         return updated;
     }
 

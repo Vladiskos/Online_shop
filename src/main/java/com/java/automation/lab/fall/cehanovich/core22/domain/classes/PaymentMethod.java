@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 @XmlRootElement(name = "PaymentMethod")
 @XmlType(propOrder = {"balance"})
-public abstract class PaymentMethod implements Comparable<PaymentMethod>{
+public abstract class PaymentMethod extends AbstractEntity implements Comparable<PaymentMethod>{
     protected BigDecimal balance;
 
     public PaymentMethod() {
